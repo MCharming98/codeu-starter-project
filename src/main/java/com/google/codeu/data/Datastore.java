@@ -101,8 +101,10 @@ public class Datastore {
         long timestamp = (long) entity.getProperty("timestamp");
         //String recipient = (String) entity.getProperty("recipient"); // Add recipient
         String imageUrl = (String) entity.getProperty("imageUrl");
-        float sentimentScore = entity.getProperty("sentimentScore") == null? (float) 0.0 : ((Double) entity.getProperty("sentimentScore")).floatValue();
-        Message message = new Message(id, user, text, timestamp, recipient, sentimentScore, imageUrl);
+        float sentimentScore = entity.getProperty("sentimentScore") ==
+            null? (float) 0.0 : ((Double) entity.getProperty("sentimentScore")).floatValue();
+        Message message = new Message(id, user, text, timestamp, recipient,
+            sentimentScore, imageUrl);
         messages.add(message);
       } catch (Exception e) {
         System.err.println("Error reading message.");
