@@ -30,6 +30,10 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Message;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.Document.Type;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
@@ -117,6 +121,7 @@ public class MessageServlet extends HttpServlet {
 
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
+<<<<<<< HEAD
 
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
@@ -127,7 +132,19 @@ public class MessageServlet extends HttpServlet {
     String textWithImagesReplaced = text.replaceAll(regex, replacement);
     String recipient = request.getParameter("recipient");
 
+<<<<<<< HEAD
     Message message = new Message(user, textWithImagesReplaced, recipient, "");
+=======
+    Message message = new Message(user, textWithImagesReplaced, recipient);
+=======
+    float sentimentScore = getSentimentScore(text);
+    text = extractImgUrl(text);
+    String recipient = request.getParameter("recipient");
+
+    Message message = new Message(user, text, sentimentScore, recipient);
+    datastore.storeMessage(message);
+>>>>>>> adding function to get sentiment score of message
+>>>>>>> adding function to get sentiment score of message
 
     if (blobKeys != null && !blobKeys.isEmpty()) {
       BlobKey blobKey = blobKeys.get(0);
@@ -146,5 +163,16 @@ public class MessageServlet extends HttpServlet {
    */
   private String extractImgUrl(String text) {
     return (text.replaceAll(this.imgUrlRegex, this.imgUrlReplacement));
+  }
+
+  private float getSentimentScore(String text) throws IOException {
+    Document doc = Document.newBuilder()
+        .setContent(text).setType(Type.PLAIN_TEXT).build();
+
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    languageService.close();
+
+    return sentiment.getScore();
   }
 }
