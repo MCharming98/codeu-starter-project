@@ -56,15 +56,19 @@ function displayOtherOptions(){
   var options = keyword.split(" ");
   var displayList = document.getElementById('display-list');
   options.forEach(function(opt) {
-    var link = document.createElement('a');
-    var text = document.createTextNode(opt);
-    link.appendChild(text);
-    link.href = "/info-present.html/?kw=" + opt;
+    var optBtn = document.createElement("BUTTON");
+    optBtn.innerText = opt;
+    optBtn.value = opt;
+    optBtn.onclick = function() {refreshPage(optBtn.value);}
 
     var item = document.createElement('li');
-    item.appendChild(link);
+    item.appendChild(optBtn);
     displayList.appendChild(item);
   });
+}
+
+function refreshPage(keyword){
+  window.location.search = "?kw=" + keyword;
 }
 
 function buildInfoUI(){
