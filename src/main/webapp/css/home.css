@@ -1,7 +1,7 @@
 body {
+  font-family: Verdana, Geneva, sans-serif;
   padding: 50px 60px;
   text-align: center;
-  font-family: Verdana, Geneva, sans-serif;
 }
 
 .file {
@@ -16,7 +16,6 @@ body {
 }
 
 img {
-  float:center;
   height: 100px;
   width: 50px;
 }
