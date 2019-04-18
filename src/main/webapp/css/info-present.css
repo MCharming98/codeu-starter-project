@@ -20,8 +20,8 @@ body {
 }
 
 .button:hover {
-  background-color: rgb(16, 128, 148);
-  color: black;
+  background-color: white;
+  color: rgb(16, 128, 148);
   opacity: .5;
 }
 
