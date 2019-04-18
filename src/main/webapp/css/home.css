@@ -22,7 +22,7 @@ body {
 .button:hover {
   background-color: white;
   color: rgb(16, 128, 148);
-  opacity: .5;
+  opacity: .7;
 }
 
 .file {
