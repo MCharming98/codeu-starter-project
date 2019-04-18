@@ -1,4 +1,7 @@
 body {
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-size:cover;
   font-family: Verdana, Geneva, sans-serif;
   padding: 50px 60px;
   text-align: center;
@@ -18,9 +21,8 @@ body {
 }
 
 .button:hover {
-  background-color: rgb(16, 128, 148);
-  color: #000000;
-  opacity: 0.3;
+  background-color: white;
+  color: rgb(16, 128, 148);
 }
 
 .logo {
