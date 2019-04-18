@@ -1,7 +1,6 @@
 body {
   background-image: url("background.png");
-  background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
   font-family: Verdana, Geneva, sans-serif;
   padding: 50px 60px;
   text-align: center;
