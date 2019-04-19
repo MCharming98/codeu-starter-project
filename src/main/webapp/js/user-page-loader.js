@@ -67,7 +67,6 @@ function fetchMessages() {
   if (parameterLanguage) {
     url += '&language=' + parameterLanguage;
   }
-
   fetch(url)
       .then((response) => {
         return response.json();
@@ -84,13 +83,6 @@ function fetchMessages() {
           messagesContainer.appendChild(messageDiv);
         });
       });
-
-    // Add the query string parameter
-    const parameterLanguage = urlParams.get('language');
-    let url = '/messages?user=' + parameterUsername;
-    if(parameterLanguage) {
-      url += '&language=' + parameterLanguage;
-    }
 }
 
 /**
@@ -112,7 +104,7 @@ function buildMessageDiv(message) {
   messageDiv.classList.add('message-div');
   messageDiv.appendChild(headerDiv);
   messageDiv.appendChild(bodyDiv);
-  
+
   if(message.imageUrl){
     bodyDiv.innerHTML += '<br/>';
     bodyDiv.innerHTML += '<img src="' + message.imageUrl + '" />';
